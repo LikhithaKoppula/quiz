@@ -5,8 +5,8 @@ function Next(props) {
     //console.log(props.dataToNext)
     const questions = [
 		{
-			"question": ' Who is the father of C language? ',
-			"options": ['James Gausling','Guido Van Rossum','Dennis Ritchie','Bjarne Stroustrup'],"answer":"Dennis Ritchie" },
+			"question": ' Who is the father of C language?',
+			"options": [' James Gausling',' Guido Van Rossum',' Dennis Ritchie',' Barne Stroustrup'],"answer":"Dennis Ritchie" },
 		{
 			"question": ' Which of the following is not a valid C variable name?',
 			"options": ['int number ','float rate','int variable_count', 'int $main'],"answer":"int $main" },
@@ -68,7 +68,7 @@ function Next(props) {
     return (
         <>
 
-            <div>
+            <div className='container'>
                 {showScore ? (<div className='score-section'>
                     You scored {score} out of {questions.length}
                     {level == 2 ?
@@ -91,12 +91,15 @@ function Next(props) {
                             <div className='question-text'>{questions[currentQuestion].question}</div>
                         </div>
                         {questions[currentQuestion].options.map((answerOption, index) => (
-                            <> <div className="form-check">
+                            <> <div className="form-check col">
+                                <div className='row'>
                                 <input className="form-check-input" onChange={setCurrentOption} type="radio" name="radio" value={answerOption}></input>
                                 <label className="form-check-label" for={index} >{answerOption}</label>
                             </div>
+                            </div>
                             </>
                         ))}
+    
                         <button ClassName="btn btn-primary" onClick={check}>Next</button>
                     </>
                 )
