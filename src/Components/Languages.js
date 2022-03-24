@@ -6,7 +6,7 @@ function Languages(props) {
        props.dataToHome(props.name)
    }
   return (
-    <Link to='/display' > 
+    <Link to='/display/level1' > 
     <li className="list-group-item" style={style} onClick={clickHandler}>{props.name}</li>
     </Link>
   )

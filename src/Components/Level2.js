@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../App.css';
-function Next(props) {
+function Level2(props) {
     //console.log(props.dataToNext)
     const questions = [
 		{
@@ -42,17 +42,13 @@ function Next(props) {
     const [level, setlevel] = useState(1)
     const check = () => {
         const answer = option
-        
         if (answer == questions[currentQuestion]['answer']) {
             setScore(score + 1)
         }
-        console.log(currentQuestion)
         if (currentQuestion + 1 < questions.length)
             setCurrentQuestion(currentQuestion + 1);
         else {
-            console.log(showScore)
             setShowScore(true);
-            console.log(showScore)
             const percentage = (score / questions.length) * 100
             console.log(score,percentage);
             if (percentage >= 60) {
@@ -63,7 +59,7 @@ function Next(props) {
     }
     const setCurrentOption = (e) => {
         setoption(e.target.value)
-        //console.log(e.target.value);
+        console.log(e.target.value);
     }
     return (
         <>
@@ -71,16 +67,6 @@ function Next(props) {
             <div>
                 {showScore ? (<div className='score-section'>
                     You scored {score} out of {questions.length}
-                    {level == 2 ?
-                        (<>
-                            <div>Hurray ! You are Qualified for Level 2 </div>
-                           <Link to="/display/level2"><button>Level 2</button></Link>
-                        </>
-                        ) :
-                        (<>
-                            <div>Sorry ! You are Not Qualified for Level 2 Please Try Again !!</div>
-                            <Link to="/display/level1"><button>Level-1</button></Link>
-                        </>)}
                 </div>) : (
                     <>
                         <h2>Welcome to {props.dataToNext} quiz Level {level}</h2>
@@ -106,4 +92,4 @@ function Next(props) {
     )
 }
 
-export default Next
+export default Level2
