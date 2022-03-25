@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 function Languages(props) {
-    const style={"width":"30%","align-items":"center","margin-left":"35%","margin-bottom":"1%", "border-style":"solid","border-width": " thin medium"}
+    const style={"width":"150%",aligntems:"center","margin-bottom":"1%", "border-style":"solid","border-width": " thin medium",marginLeft:"-1%"}
    const clickHandler = () =>{
        props.dataToHome(props.name)
    }

@@ -15,7 +15,7 @@ function Level2(props) {
                 axios.get("http://localhost:5001/questions/"+props.dataToNext+"/2").then((res)=>
                 {   
                    
-                    setquestions(...questions,res.data.questions);
+                    setquestions(res.data.questions);
                 }
                 )
             }, [])
