@@ -73,12 +73,12 @@ function Next(props) {
                     You scored {score} out of {questions.length}
                     {level == 2 ?
                         (<>
-                            <div>Hurray ! You are Qualified for Level 2 </div>
+                            <div className='result'>Hurray ! You are Qualified for Level 2 </div>
                            <Link to="/display/level2"><button>Level 2</button></Link>
                         </>
                         ) :
                         (<>
-                            <div>Sorry ! You are Not Qualified for Level 2 Please Try Again !!</div>
+                            <div className='result'>Sorry ! You are Not Qualified for Level 2 Please Try Again !!</div>
                             <Link to="/display/level1"><button>Level-1</button></Link>
                         </>)}
                 </div>) : (
@@ -92,11 +92,11 @@ function Next(props) {
                         </div>
                         {questions[currentQuestion].options.map((answerOption, index) => (
                             <> <div className="form-check col">
-                                <div className='row'>
+                                
                                 <input className="form-check-input" onChange={setCurrentOption} type="radio" name="radio" value={answerOption}></input>
                                 <label className="form-check-label" for={index} >{answerOption}</label>
                             </div>
-                            </div>
+                            
                             </>
                         ))}
     

@@ -49,3 +49,11 @@
 }
 /*background: rgb(2,0,36);
 background: linear-gradient(90deg, rgba(2,0,36,1) 100%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%);*/
+
+.result{
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbDKHfPjcIzYm_C6WNO1U7QqTDYknyuDiD_g&usqp=CAU);
+background-repeat: no-repeat;
+width: 10px;
+height: 20px;
+
+}
