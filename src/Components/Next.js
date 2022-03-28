@@ -6,45 +6,57 @@ function Next(props) {
     //console.log(props.dataToNext)
     const [questions, setquestions] = useState([])
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [answers,setanswers]=useState(Array(10).fill(0));
     const [showScore, setShowScore] = useState(false);
-    const [score, setScore] = useState(0);
-    const [option, setoption] = useState("");
+    const [score, setScore] = useState(10);
     const [level, setlevel] = useState(1);
     const getquestions = () => {
         useEffect(() => {
             axios.get("http://localhost:5001/questions/" + props.dataToNext + "/" + level).then((res) => {
-
                 setquestions(...questions, res.data.questions);
                 // console.log(res.data.questions);
             }
             )
         }, [])
-
     }
     getquestions();
-    console.log(questions);
-    const check = () => {
-        const answer = option
-        if (answer == questions[currentQuestion]["answers"][0]["text"]) {
-            setScore(score + 1)
-        }
-        // console.log(currentQuestion)
+    //console.log(questions);
+    const NextQuestion = () => {
         if (currentQuestion + 1 < questions.length)
             setCurrentQuestion(currentQuestion + 1);
         else {
             setShowScore(true);
-            const percentage = (score / questions.length) * 100
-            console.log(score, percentage);
-            if (percentage >= 60) {
-                setlevel(2)
-            }
-
         }
 
     }
-    const setCurrentOption = (e) => {
-        setoption(e.target.value)
-        //console.log(e.target.value);
+    const PrevQuestion = () => {
+        setCurrentQuestion(currentQuestion - 1);
+    }
+    const setCurrentOption = index => e => {
+      let newarr=[...answers]
+      console.log(answers);
+      newarr[currentQuestion]=index
+      setanswers(newarr);
+    }
+    const validate=()=>
+    {    console.log(answers);
+        let cnt=0;
+        for(let i=0;i<answers.length;i++)
+        {   
+            //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])
+            if(questions[i].answers[0]["text"]===questions[i].options[answers[i]]["text"]){
+                cnt++;
+                // setScore(score+1);
+            }
+        }
+        setScore(cnt)
+        // console.log(cnt)
+        const percentage = (cnt / questions.length) * 100
+            console.log(cnt, percentage);
+            if (percentage >= 60) {
+                setlevel(2)   
+            }
+            setShowScore(true);
     }
     return (<>
         <div className='container'>
@@ -85,13 +97,24 @@ function Next(props) {
                                 <div className='answer-section'>
                                 {d["options"].map((o, index) => (
                                     <> <div className="form-check">
-                                        <input className="form-check-input" onChange={setCurrentOption} type="radio" name="radio" value={o.text}></input>
+                                        <input className="form-check-input" onChange={setCurrentOption(index)} type="radio" name="radio" value={o.text}  checked = {index==answers[currentQuestion]} ></input>
                                         <label className="form-check-label" for={index} >{o.text}</label>
                                     </div>
                                     </>
                                 ))}
                                 </div>
-                                <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={check}>Next</button>
+                                <div className='d-flex'>
+                                {
+                                    currentQuestion!=0 ?(
+                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                    (<div></div>)
+                                }
+                                {
+                                    currentQuestion!=(questions.length-1)?(
+                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={NextQuestion}>Next</button>):
+                                    (<button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={validate}>Submit</button>)
+                                }
+                                </div>
                             </>
                         )
                     })
