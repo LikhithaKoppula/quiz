@@ -40,7 +40,7 @@ function Next(props) {
     }
     const validate=()=>
     {    console.log(answers);
-        let cnt=10;
+        let cnt=0;
         for(let i=0;i<answers.length;i++)
         {   
             //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])

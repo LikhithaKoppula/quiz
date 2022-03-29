@@ -8,7 +8,7 @@ function Next(props) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers,setanswers]=useState(Array(10).fill(0));
     const [showScore, setShowScore] = useState(false);
-    const [score, setScore] = useState(10);
+    const [score, setScore] = useState(0);
     const [level, setlevel] = useState(1);
     const getquestions = () => {
         useEffect(() => {
@@ -40,7 +40,7 @@ function Next(props) {
     }
     const validate=()=>
     {    console.log(answers);
-        let cnt=10;
+        let cnt=0;
         for(let i=0;i<answers.length;i++)
         {   
             //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])
