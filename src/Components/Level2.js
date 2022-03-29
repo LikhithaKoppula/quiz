@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from "axios";
-function Level2(props) {
+function Next(props) {
     //console.log(props.dataToNext)
     const [questions, setquestions] = useState([])
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -27,10 +27,10 @@ function Level2(props) {
         else {
             setShowScore(true);
         }
+
     }
     const PrevQuestion = () => {
-            setCurrentQuestion(currentQuestion - 1);
-
+        setCurrentQuestion(currentQuestion - 1);
     }
     const setCurrentOption = index => e => {
       let newarr=[...answers]
@@ -40,7 +40,7 @@ function Level2(props) {
     }
     const validate=()=>
     {    console.log(answers);
-        let cnt=0;
+        let cnt=10;
         for(let i=0;i<answers.length;i++)
         {   
             //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])
@@ -54,28 +54,36 @@ function Level2(props) {
         const percentage = (cnt / questions.length) * 100
             console.log(cnt, percentage);
             if (percentage >= 60) {
-                setlevel(2)   
+                setlevel(3)   
             }
             setShowScore(true);
     }
     return (<>
-        <div className='container' >
-            {showScore ? (<div className='score-section'>
+        <div className='container'>
+            {showScore ? (<div style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }} >
                 You scored {score} out of {questions.length}
-                {level == 2 ?
+                {level == 3 ?
                     (<>
-                        <div className='mt-5 text-center'>Hurray ! You are Qualified for Level 2 </div>
-                        <Link to="/display/level2"><button>Level 2</button></Link>
+                    <div >
+                        <br></br>
+                        <div className='Image'><img src='https://media3.giphy.com/media/NzeJJic0gjUaw8FoVV/giphy.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                        <br>
+                        </br><span className='result' style={{fontSize:"30px"}}>You did a great job </span><br></br>
+                         <br></br>
+                        
+                    </div>
                     </>
                     ) :
                     (<>
-                        <div className='mt-2' style={{display:"block"}}>
-                            Sorry ! You are Not Qualified for Level 2 Please Try Again !!
-                        <Link to="/" ><button >Level-1</button></Link>
+                        <div className='mt-2' style={{display:"block",fontSize:"30px"}}>
+                             You are Not Qualified Please Try Again !!
+                             <br></br><br></br>
+                             <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                        <Link to="/" ><button className='button2' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button></Link>
                         </div>
                     </>)}
             </div>) : (
-                <>  <div style={{marginLeft:"30%",marginTop:"20%"}}>
+                <>  <div className='questions' style={{marginLeft:"30%",marginTop:"20%"}}>
                     <h2 >Welcome to {props.dataToNext} quiz Level {level}</h2>
                     {questions.map(function (d, idx) {
                         if (idx == currentQuestion) return (
@@ -95,14 +103,15 @@ function Level2(props) {
                                     </>
                                 ))}
                                 </div>
+                                <br></br>
                                 <div className='d-flex'>
                                 {
                                     currentQuestion!=0 ?(
-                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                    <button style={{marginLeft:"5%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
                                     (<div></div>)
                                 }
                                 {
-                                    currentQuestion!=(questions.length-1)?(
+                                    currentQuestion!=(questions.length-2)?(
                                     <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={NextQuestion}>Next</button>):
                                     (<button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={validate}>Submit</button>)
                                 }
@@ -121,4 +130,4 @@ function Level2(props) {
     )
 }
 
-export default Level2
+export default Next

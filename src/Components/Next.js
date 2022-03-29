@@ -40,7 +40,7 @@ function Next(props) {
     }
     const validate=()=>
     {    console.log(answers);
-        let cnt=0;
+        let cnt=10;
         for(let i=0;i<answers.length;i++)
         {   
             //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])
@@ -59,23 +59,31 @@ function Next(props) {
             setShowScore(true);
     }
     return (<>
-        <div className='container' >
-            {showScore ? (<div className='score-section'>
+        <div className='container'>
+            {showScore ? (<div style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }} >
                 You scored {score} out of {questions.length}
                 {level == 2 ?
                     (<>
-                        <div className='mt-5 text-center'>Hurray ! You are Qualified for Level 2 </div>
-                        <Link to="/display/level2"><button>Level 2</button></Link>
+                    <div >
+                        <br></br>
+                         <span className='result' style={{fontSize:"30px"}}>You are Qualified to Level 2 </span><br></br>
+                         <br></br>
+                        <div className='Image'><img src='https://i.gifer.com/Ju9P.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                       
+                        <Link to="/display/level2"><button className='button1' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%",onClick:"animated"}}>Level 2</button></Link><br></br>
+                    </div>
                     </>
                     ) :
                     (<>
-                        <div className='mt-2' style={{display:"block"}}>
-                            Sorry ! You are Not Qualified for Level 2 Please Try Again !!
-                        <Link to="/" ><button >Level-1</button></Link>
+                        <div className='mt-2' style={{display:"block",fontSize:"30px"}}>
+                             You are Not Qualified for Level 2 Please Try Again !!
+                             <br></br><br></br>
+                             <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                        <Link to="/" ><button className='button2' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button></Link>
                         </div>
                     </>)}
             </div>) : (
-                <>  <div style={{marginLeft:"30%",marginTop:"20%"}}>
+                <>  <div className='questions' style={{marginLeft:"30%",marginTop:"20%"}}>
                     <h2 >Welcome to {props.dataToNext} quiz Level {level}</h2>
                     {questions.map(function (d, idx) {
                         if (idx == currentQuestion) return (
@@ -95,10 +103,11 @@ function Next(props) {
                                     </>
                                 ))}
                                 </div>
+                                <br></br>
                                 <div className='d-flex'>
                                 {
                                     currentQuestion!=0 ?(
-                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                    <button style={{marginLeft:"5%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
                                     (<div></div>)
                                 }
                                 {
