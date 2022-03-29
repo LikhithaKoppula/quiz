@@ -40,7 +40,7 @@ function Next(props) {
     }
     const validate=()=>
     {    console.log(answers);
-        let cnt=0;
+        let cnt=10;
         for(let i=0;i<answers.length;i++)
         {   
             //console.log(questions[i].answers[0]["text"],questions[i].options[answers[i]]["text"],answers[i])
@@ -79,7 +79,7 @@ function Next(props) {
                              You are Not Qualified for Level 2 Please Try Again !!
                              <br></br><br></br>
                              <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
-                        <Link to="/display/level1" ><button className='button2' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button></Link>
+                        <Link to="/" ><button className='button2' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button></Link>
                         </div>
                     </>)}
             </div>) : (
@@ -103,10 +103,11 @@ function Next(props) {
                                     </>
                                 ))}
                                 </div>
+                                <br></br>
                                 <div className='d-flex'>
                                 {
                                     currentQuestion!=0 ?(
-                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                    <button style={{marginLeft:"5%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
                                     (<div></div>)
                                 }
                                 {

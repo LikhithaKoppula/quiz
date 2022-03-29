@@ -60,12 +60,18 @@ function Level2(props) {
     }
     return (<>
         <div className='container' >
-            {showScore ? (<div className='score-section'>
+            {showScore ? (<div className='score-section' style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }}>
                 You scored {score} out of {questions.length}
                 {level == 2 ?
                     (<>
-                        <div className='mt-5 text-center'>Hurray ! You are Qualified for Level 2 </div>
-                        <Link to="/display/level2"><button>Level 2</button></Link>
+                        <div >
+                        <br></br>
+                         <span className='result' style={{fontSize:"30px"}}>You did a great job</span><br></br>
+                         <br></br>
+                        <div className='Image'><img src='https://media3.giphy.com/media/NzeJJic0gjUaw8FoVV/giphy.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                       
+                        
+                    </div>
                     </>
                     ) :
                     (<>
@@ -98,7 +104,7 @@ function Level2(props) {
                                 <div className='d-flex'>
                                 {
                                     currentQuestion!=0 ?(
-                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                    <button style={{marginLeft:"10%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
                                     (<div></div>)
                                 }
                                 {
