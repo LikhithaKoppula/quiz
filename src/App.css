@@ -82,3 +82,36 @@
   align-items: center;
   margin-top: 10%;
 }
+
+/* .result{
+  background-image: url(https://i.gifer.com/Ju9P.gif);
+
+width: 10px;
+height: 20px;
+
+} */
+.button1{
+  background-color: rgb(231, 231, 200);
+  box-shadow: 0 5px #666;
+}
+
+.button1:hover{
+background-color: rgb(13, 173, 120);
+color:white;
+opacity: 1;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+
+}
+.button2{
+  background-color: rgb(231, 231, 200);
+  box-shadow: 0 5px #666;
+}
+
+.button2:hover{
+  background-color: rgb(228, 78, 32);
+  color:white;
+  opacity: 1;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
