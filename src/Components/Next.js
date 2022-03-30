@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import Button from './abc';
 import '../App.css';
+
 import axios from "axios";
 function Next(props) {
     //console.log(props.dataToNext)
@@ -72,7 +74,9 @@ function Next(props) {
     }
     const refresh=()=>window.location.reload();
     return (<>
-        <div className='container'>
+    
+        <div className='container d-flex'>
+            
             {showScore ? (<div style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }} >
                 You scored {score} out of {questions.length}
                 {level == 2 ?
@@ -96,7 +100,9 @@ function Next(props) {
                         </div>
                     </>)}
             </div>) : (
-                <>  <div className='questions' style={{marginLeft:"30%",marginTop:"20%"}}>
+                
+                <>  <Button/>  
+                <div className='questions' style={{marginLeft:"30%",marginTop:"20%"}}>
                     <h2 >Welcome to {props.dataToNext} quiz Level {level}</h2>
                     {questions.map(function (d, idx) {
                         if (idx == currentQuestion) return (
@@ -117,7 +123,7 @@ function Next(props) {
                                 ))}
                                 </div>
                                 <br></br>
-                                <div className='d-flex'>
+                                <div className='d-flex '>
                                 {
                                     currentQuestion!=0 ?(
                                     <button style={{marginLeft:"5%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):

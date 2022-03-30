@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from "axios";
+import Button from './abc';
 function Level2(props) {
     //console.log(props.dataToNext)
     const [questions, setquestions] = useState([])
@@ -74,7 +75,8 @@ function Level2(props) {
             setShowScore(true);
     }
     return (<>
-        <div className='container'>
+        <div className='container d-flex'>
+        <Button/>
             {showScore ? (<div style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }} >
                 You scored {score} out of {questions.length}
                 {level == 3 ?
