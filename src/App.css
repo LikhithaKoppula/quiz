@@ -1,4 +1,4 @@
-.App {
+.App { 
   height:100%;
   width:100%;
 }
@@ -41,7 +41,9 @@
 
   /* background-image: url("");
   background-repeat: no-repeat;
+
  */
+ /* background-color: antiquewhite; */
 }
 .list
 {
@@ -112,4 +114,22 @@ transform: translateY(4px);
   opacity: 1;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+.button{
+  background-color: #dee1e7;
+  border: none;
+  color: rgb(10, 2, 2);
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+.button:hover{
+  background-color: #4c8644;
+  color: white;
 }
