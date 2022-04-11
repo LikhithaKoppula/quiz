@@ -25,7 +25,7 @@ function Next(props) {
             let lg=props.dataToNext ||localStorage.getItem("language");
             axios.get("http://localhost:5001/questions/" + lg + "/" + level).then((res) => {
                 setquestions(...questions, res.data.questions);
-                // console.log(res.data.questions);
+                 // console.log(res.data.questions);
             }
             )
         }, [])
@@ -95,7 +95,7 @@ function Next(props) {
                         <div className='mt-2' style={{display:"block",fontSize:"30px"}}>
                              You are Not Qualified for Level 2 Please Try Again !!
                              <br></br><br></br>
-                             <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
+                             <div className='Image'><img src='https://media1.giphy.com/media/WvSqmjBMjzha87aAON/giphy.gif' style={{height:"40%" , width:"40%"}}></img></div>
                         <Link to="/" ><button className='button2' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button></Link>
                         </div>
                     </>)}

@@ -13,8 +13,10 @@ function Home(props) {
     props.dataToApp(language)
     return (
         <div className='container'>
-            <div style={{ display: "flex" }}>
-                 <img src='https://i.pinimg.com/originals/b9/49/c8/b949c86a570df07a7440abe39405834c.gif' style={{ marginTop: "10%" }}></img> 
+            <div  style={{ display: "flex" }}>
+               
+                 <img src='https://i.pinimg.com/originals/b9/49/c8/b949c86a570df07a7440abe39405834c.gif' style={{ marginTop: "10%",  width: "40% ",  height: "auto"}}></img> 
+                 
                 <div style={{marginTop: "15%", display: "inline" }} >
                     <h3 style={{textAlign:"center" ,marginBottom:"10%",color:"dodgerblue",}}>Select Any Language</h3>
                     <ul class="list-group" >
