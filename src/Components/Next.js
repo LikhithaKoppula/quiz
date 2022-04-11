@@ -13,7 +13,7 @@ function Next(props) {
     const [score, setScore] = useState(0);
     const [level, setlevel] = useState(1);
     const [vis,setvis]=useState(new Array(10).fill(0))
-
+    const [err,seterr] = useState(false);
 
     const changeQuestion=(e)=>{
         setCurrentQuestion(+e.target.value-1)
@@ -36,9 +36,16 @@ function Next(props) {
             let lg=props.dataToNext ||localStorage.getItem("language");
             axios.get("http://localhost:5001/questions/" + lg + "/" + level).then((res) => {
                 setquestions(...questions, res.data.questions);
-                // console.log(res.data.questions);
+                console.log(res.data);
             }
-            )
+            ).catch(function (error) {
+                // if (error.response) {
+                  console.log(error);
+                  seterr(true);
+                //   console.log(error.response.status);
+                //   console.log(error.response.headers);
+                // }
+            });
         }, [])
         
     }
@@ -83,6 +90,15 @@ function Next(props) {
             if(questions[key].answers[0]["text"]===questions[key].options[value]["text"])cnt++;
         }
         setScore(cnt)
+        const a={"score":cnt}
+        
+
+        axios.post("http://localhost:5001/log-client-errors/",{a}).then(res => {
+            //console.log(res);
+            alert(res)
+            //logger.info(res)
+            //console.log(res.data);
+          })
         // console.log(cnt)
         const percentage = (cnt / questions.length) * 100
             console.log(cnt, percentage);
@@ -100,6 +116,11 @@ function Next(props) {
     }
     const refresh=()=>window.location.reload();
     return (<>
+            { err? 
+            <div class="alert alert-danger text-center mt-3" role="alert">
+                    Database Application is not connected
+            </div>:(<h1></h1>)
+            }
     
         <div className='container d-flex'>
             
@@ -120,6 +141,7 @@ function Next(props) {
                     (<>
                         <div className='mt-2' style={{display:"block",fontSize:"30px"}}>
                              You are Not Qualified for Level 2 Please Try Again !!
+                             
                              <br></br><br></br>
                              <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
                         <button className='button2' onClick={delstorage}  style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-1</button>

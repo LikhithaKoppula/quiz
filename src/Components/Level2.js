@@ -99,7 +99,6 @@ function Level2(props) {
     }
     const refresh=()=>window.location.reload();
     return (<>
-    
         <div className='container d-flex'>
             
             {showScore ? (<div style={{marginTop:"10%",marginLeft:"35%",fontSize:"30px" }} >
@@ -160,16 +159,20 @@ function Level2(props) {
                                 ))}
                                 </div>
                                 <br></br>
-                                <div className='d-flex '>
+                                <div className='d-flex ' >
                                 {
                                     currentQuestion!=0 ?(
-                                    <button style={{marginLeft:"5%"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                                       
+                                    <button style={{float:"right"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
+                
                                     (<div></div>)
                                 }
                                 {
                                     currentQuestion!=(questions.length-1)?(
+                                       
                                     <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={NextQuestion}>Next</button>):
                                     (<button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={validate}>Submit</button>)
+                                   
                                 }
                                 </div>
                             </>
