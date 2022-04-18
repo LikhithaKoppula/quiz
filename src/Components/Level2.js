@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Button from './abc';
 import '../App.css';
-
+import swal from 'sweetalert2'
 import axios from "axios";
 function Level2(props) {
     //console.log(props.dataToNext)
@@ -78,7 +78,7 @@ function Level2(props) {
         localStorage.removeItem("answers")
         localStorage.removeItem("currentQuestion")
         localStorage.removeItem("visited")
-        refresh();
+        //refresh();
     }
     const validate=()=>
     {    console.log(answers);
@@ -105,40 +105,67 @@ function Level2(props) {
                 You scored {score} out of {questions.length}
                 {level == 3 ?
                     (<>
-                    <div >
-                        <br></br>
-                         <span className='result' style={{fontSize:"30px"}}>You are Qualified to Level 2 </span><br></br>
-                         <br></br>
-                        <div className='Image'><img src='https://i.gifer.com/Ju9P.gif' style={{height:"40%" , width:"40%"}}></img></div>
-                       
-                        <Link to="/"><button className='button1' style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%",onClick:"animated"}}>Home</button></Link><br></br>
-                    </div>
+                    {
+                        swal.fire({
+                            title: 'Congratulations.',
+                            text: `you scored ${score} out of ${questions.length}`,
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ok!!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                delstorage();
+                              window.location.href='/'
+                            }
+                            else{
+                                delstorage();
+                              window.location.href='/'
+                            }
+                          })
+                         
+                        }
                     </>
                     ) :
                     (<>
-                        <div className='mt-2' style={{display:"block",fontSize:"30px"}}>
-                             You are Not Qualified for Level 2 Please Try Again !!
-                             <br></br><br></br>
-                             <div className='Image'><img src='https://www.sorryimages.love/images/quotes/english/general/cute-sorry-animated-image-gif-52650-304402.gif' style={{height:"40%" , width:"40%"}}></img></div>
-                        <button className='button2' onClick={delstorage} style={{ fontSize: "16px",padding: "15px 32px", margin:"4px 2px", cursor: "pointer",marginTop:"4%",marginLeft:"10%"}}>Level-2</button>
-                        </div>
+                       {
+                        swal.fire({
+                            title: 'Sorry!!',
+                            text: `you scored ${score} out of ${questions.length}`,
+                            icon: 'error',
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Level2'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                                delstorage();
+                              window.location.href='/display/level2'
+                            }
+                            else
+                            {
+                                delstorage();
+                                window.location.href='/display/level2'
+                            }
+                          })
+                         
+                        }
                     </>)}
             </div>) : (
                 
                 <>  
-                 <div style={{border:"3px solid black",maxWidth:"15%",padding:"1%",marginLeft:"1%",marginTop:"18%"}}>
-                    <button className="button" value="1" style={{backgroundColor: (vis[0]==0) ? "orange":"green" }} onClick={changeQuestion}>1</button>
-                    <button className="button" value="2" style={{backgroundColor: (vis[1]==0) ? "orange":"green" }} onClick={changeQuestion}>2</button>
-                    <button className="button" value="3" style={{backgroundColor: (vis[2]==0) ? "orange":"green" }} onClick={changeQuestion}>3</button>
-                    <button className="button" value="4" style={{backgroundColor: (vis[3]==0) ? "orange":"green" }} onClick={changeQuestion}>4</button>
-                    <button className="button" value="5" style={{backgroundColor: (vis[4]==0) ? "orange":"green" }} onClick={changeQuestion}>5</button>
-                    <button className="button" value="6" style={{backgroundColor: (vis[5]==0) ? "orange":"green" }} onClick={changeQuestion}>6</button>
-                    <button className="button" value="7" style={{backgroundColor: (vis[6]==0) ? "orange":"green" }} onClick={changeQuestion}>7</button>
-                    <button className="button" value="8" style={{backgroundColor: (vis[7]==0) ? "orange":"green" }} onClick={changeQuestion}>8</button>
-                    <button className="button" value="9" style={{backgroundColor: (vis[8]==0) ? "orange":"green" }} onClick={changeQuestion}>9</button>
-                    <button className="button" value="10"style={{backgroundColor: (vis[9]==0) ? "orange":"green" }} onClick={changeQuestion}>10</button>
-                </div> 
-                <div className='questions' style={{marginLeft:"30%",marginTop:"20%"}}>
+                <div style={{ border: "5px solid grey", maxWidth: "20%", padding: "1%", marginLeft: "1%", marginTop: "15%", paddingLeft: '2.3%', maxHeight: '365px', outline:'1px solid black' }}>
+                        <button className="button mx-2 my-2" value="1" style={{ backgroundColor: (vis[0] == 0) ? "rgb(136,136,136)" : "#339966", fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>1</button>
+                        <button className="button mx-2 my-2" value="2" style={{ backgroundColor: (vis[1] == 0) ? "rgb(136,136,136)" : "#339966" , fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>2</button>
+                        <button className="button mx-2 my-2" value="3" style={{ backgroundColor: (vis[2] == 0) ? "rgb(136,136,136)" : "#339966" , fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>3</button>
+                        <button className="button mx-2 my-2" value="4" style={{ backgroundColor: (vis[3] == 0) ? "rgb(136,136,136)" : "#339966", fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>4</button>
+                        <button className="button mx-2 my-2" value="5" style={{ backgroundColor: (vis[4] == 0) ? "rgb(136,136,136)" : "#339966", fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>5</button>
+                        <button className="button mx-2 my-2" value="6" style={{ backgroundColor: (vis[5] == 0) ? "rgb(136,136,136)" : "#339966",fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>6</button>
+                        <button className="button mx-2 my-2" value="7" style={{ backgroundColor: (vis[6] == 0) ? "rgb(136,136,136)" : "#339966",fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>7</button>
+                        <button className="button mx-2 my-2" value="8" style={{ backgroundColor: (vis[7] == 0) ? "rgb(136,136,136)" : "#339966",fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>8</button>
+                        <button className="button mx-2 my-2" value="9" style={{ backgroundColor: (vis[8] == 0) ? "rgb(136,136,136)" : "#339966",fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>9</button>
+                        <button className="button mx-2 my-2" value="10" style={{ backgroundColor: (vis[9] == 0) ? "rgb(136,136,136)" : "#339966",fontWeight:'bold',borderRadius:'20%' }} onClick={changeQuestion}>10</button>
+                    </div>
+                <div className='questions' style={{marginLeft:"15%",marginTop:"15%"}}>
                     <h2 >Welcome to {props.dataToNext} quiz Level {level}</h2>
                     {questions.map(function (d, idx) {
                         if (idx == currentQuestion) return (
@@ -152,29 +179,25 @@ function Level2(props) {
                                 <div className='answer-section'>
                                 {d["options"].map((o, index) => (
                                     <> <div className="form-check">
-                                        <input className="form-check-input" onChange={setCurrentOption(index)} type="radio" name="radio" value={o.text}  checked = {index==answers.get(currentQuestion)} ></input>
+                                        <input className="form-check-input" onChange={setCurrentOption(index)} type="radio" id={index} name="radio" value={o.text}  checked = {index==answers.get(currentQuestion)} ></input>
                                         <label className="form-check-label" for={index} >{o.text}</label>
                                     </div>
                                     </>
                                 ))}
                                 </div>
                                 <br></br>
-                                <div className='d-flex ' >
-                                {
-                                    currentQuestion!=0 ?(
-                                       
-                                    <button style={{float:"right"}} type="button" className='btn btn-info mt-3' onClick={PrevQuestion}>Previous</button>):
-                
-                                    (<div></div>)
-                                }
-                                {
-                                    currentQuestion!=(questions.length-1)?(
-                                       
-                                    <button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={NextQuestion}>Next</button>):
-                                    (<button style={{marginLeft:"45%"}} type="button" className='btn btn-info mt-3' onClick={validate}>Submit</button>)
-                                   
-                                }
-                                </div>
+                                <div className='d-flex' style={{ position: 'absolute' }}>
+                                        {
+                                            currentQuestion != 0 ? (
+                                                <button style={{ marginLeft: "5%" }} type="button" className='btn btn-dark mt-3' onClick={PrevQuestion}>Previous</button>) :
+                                                (<div></div>)
+                                        }
+                                        {
+                                            currentQuestion != (questions.length - 1) ? (
+                                                <button style={{ marginLeft: "5%" }} type="button" className='btn btn-dark mt-3' onClick={NextQuestion}>Next</button>) :
+                                                (<button style={{ marginLeft: "5%" }} type="button" className='btn btn-success mt-3' onClick={validate}>Submit</button>)
+                                        }
+                                    </div>
                             </>
                         )
                     })
