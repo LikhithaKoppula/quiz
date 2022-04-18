@@ -15,7 +15,7 @@ function Home(props) {
         <div className='container'>
             <div  style={{ display: "flex" }}>
                
-                 <img src='https://i.pinimg.com/originals/b9/49/c8/b949c86a570df07a7440abe39405834c.gif' style={{ marginTop: "10%",  width: "40% ",  height: "auto"}}></img> 
+                 <img src='https://i.pinimg.com/originals/b9/49/c8/b949c86a570df07a7440abe39405834c.gif' style={{ marginTop: "10%",  width: "50% ",  height: "50%"}}></img> 
                  
                 <div style={{marginTop: "15%", display: "inline" }} >
                     <h3 style={{textAlign:"center" ,marginBottom:"10%",color:"dodgerblue",}}>Select Any Language</h3>

@@ -3,7 +3,10 @@ import { BrowserRouter ,Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
 import Level2 from './Components/Level2';
+import Navbar from './Components/Navbar';
 import Next from './Components/Next';
+
+
 
 function App() {
   const [language, setlanguage] = useState("")
@@ -16,11 +19,13 @@ function App() {
   }
   return (
     <div className='App' >
+      <Navbar/>
     <BrowserRouter>
         <Routes>
         <Route exact path="/"  element={<Home dataToApp={dataToApp}/>}></Route>
         <Route exact path="/display/level1" element={<Next dataToNext={language}/>}></Route>
         <Route exact path="/display/level2" element={<Level2 dataToNext={language} level={2} />}></Route>
+        
         </Routes>
     </BrowserRouter>
     </div>
