@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import Button from './abc';
 import '../App.css';
 import swal from 'sweetalert2';
 
@@ -91,8 +90,6 @@ function Next(props) {
         }
         setScore(cnt)
         const a = { "score": cnt }
-
-
         // axios.post("http://localhost:5001/log-client-errors/", { a }).then(res => {
         //     //console.log(res);
         //     alert(res)
@@ -102,6 +99,7 @@ function Next(props) {
         // console.log(cnt)
         const percentage = (cnt / questions.length) * 100
         console.log(cnt, percentage);
+        localStorage.setItem("Level1_Percentage",percentage)
         if (percentage >= 60) {
             setlevel(2)
         }
@@ -128,20 +126,20 @@ function Next(props) {
                         {
                         swal.fire({
                             title: 'Hurray!!',
-                            text: `you scored ${score} out of ${questions.length}`,
+                            html:`<h1>You scored <span style="color:#008000;">${score}</span> out of <b style="font-weight:bolder;color:black">${questions.length}</b></h1>`,
                             icon: 'success',
-                            confirmButtonColor: '#3085d6',
+                            confirmButtonColor: '#008000',
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Level2'
                           }).then((result) => {
                             if (result.isConfirmed) {
-                                console.log('1')
+                                // console.log('1')
                                 delstorage();
                                 
                               window.location.href='/display/level2'
                             }
                             else{
-                                console.log('12')
+                                // console.log('12')
                                 delstorage();
                               window.location.href='/display/level2'
                             }
@@ -155,9 +153,9 @@ function Next(props) {
                            
                         swal.fire({
                             title: 'Sorry!!',
-                            text: `you scored ${score} out of ${questions.length}`,
+                            html:`<h1>You scored <span style="color:#cc3300;">${score}</span> out of <b style="font-weight:bolder;color:black">${questions.length}</b></h1>`,
                             icon: 'error',
-                            confirmButtonColor: '#3085d6',
+                            confirmButtonColor: '#cc3300',
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Level1',
                           }).then((result) => {
